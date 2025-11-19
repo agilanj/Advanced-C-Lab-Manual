@@ -10,11 +10,30 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node{
+    char data; 
+    struct Node *next;
+}*head;
+
+void search(char data){
+    struct Node *temp = head;
+    int flag = 0, i = 1;
+    while(temp != NULL){
+        if(temp->data == data){
+            flag = 1;
+            break;
+        }
+        i++;
+        temp = temp->next;
+    }
+    flag ? printf("item %c found at location %d", data, i) : printf("Item not found");
+}
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/70a82a1a-78e2-4309-a33d-d7efa207e0fe)
 
 
 
@@ -34,11 +53,32 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node{
+    int data; 
+    struct Node *next;
+}*head;
+
+
+void insert(int data)
+{
+    struct Node *n = (struct Node *) malloc (sizeof(struct Node));
+    n -> data = data;
+    if(head == NULL){
+        head = n;
+        return;
+    }
+    struct Node *temp = head;
+    while(temp -> next != NULL){
+        temp = temp -> next;
+    }
+    temp -> next = n;
+}
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/07c569f5-2b42-4529-9243-772763dad51e)
 
  
 Result:
@@ -58,11 +98,27 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    int data;
+}*head;
+
+void display()
+{
+    struct Node *temp = head;
+    while(temp != NULL){
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+}
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/c7724889-bf2a-451e-a1c8-de37e7fddc40)
 
 
 Result:
@@ -83,11 +139,36 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    float data;
+}*head;
+
+void insert(float data)
+{
+    struct Node *n = (struct Node *) malloc (sizeof(struct Node));
+    n -> data = data;
+    n -> next = NULL;
+    if(head == NULL){
+        head = n;
+        head -> prev = NULL;
+        return;
+    }
+    struct Node *temp = head;
+    while(temp -> next != NULL){
+        temp = temp -> next;
+    }
+    temp -> next = n;
+    n -> prev = temp;
+}
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/37b7d583-6168-4e68-b348-80f2e87f073d)
 
 
 Result:
@@ -125,11 +206,31 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 Program:
 
-//type your code here
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    float data;
+}*head;
+
+void delete()
+{
+    if(head == NULL){
+        printf("UNDERFLOW\n");
+        return;
+    }
+    head = head->next;
+    if(head != NULL){
+        head->prev = NULL; 
+    }
+    printf("Node deleted\n");
+}
+```
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/2a829b55-28fb-4999-a898-67e2b67d0e83)
 
 
 
