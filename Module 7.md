@@ -15,13 +15,33 @@ Else
 6.	Return 0
  
 Program:
-
-//type your code here
+```
+#include<stdio.h>
+struct asd{
+    int age;
+    char name[20];
+};
+int main()
+{
+    struct asd p;
+    scanf("%d",&p.age);
+    scanf("%s",p.name);
+    printf("Age:%d\n",p.age);
+    printf("Name:%svaccine:%d\n",p.name,p.age);
+    if(p.age>18){
+       printf("eligibility:yes"); 
+    }
+    else{
+        printf("eligibility:no");
+    }
+}
+```
 
 
 Output:
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/e352603d-2a69-4e2e-ade8-c30a9670809e)
+
 
 
 Result:
@@ -44,7 +64,31 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+struct Numbers {
+    int num1;
+    int num2;
+    
+};
+struct Result {
+    int sum;
+};
+struct Result compute(struct Numbers nums) {
+    struct Result res;
+    res.sum = nums.num1 + nums.num2;
+    return res; 
+}
+
+int main() {
+    struct Numbers nums;
+    struct Result res;
+    scanf("%d %d ", &nums.num1, &nums.num2);
+    res = compute(nums);
+    printf("%d\n", res.sum);
+    return 0;
+}
+```
 
 
 
@@ -52,7 +96,8 @@ Program:
 Output:
 
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/58bc0409-2242-494f-b52c-f3f6a5b00107)
+
 
 
 
@@ -62,7 +107,7 @@ Thus, the program is verified successfully
 
 
  
-EXP.NO:3 C PROGRAM TO READ A FILE NAME FROM USER AND WRITE THAT FILE USING FOPEN()
+EXP.NO:3 C PROGRAM TO READ A FILE NAME FROM USER AND CREATE THAT FILE USING FOPEN()
 
 Aim:
 To write a C program to read a file name from user
@@ -86,7 +131,22 @@ Use scanf to input the file name into the name array.
  
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+int main()
+{
+    char filename[100];
+    FILE *fp;
+    scanf("%s",filename);
+    fp=fopen(filename,"w");
+    if(fp!=NULL){
+        printf("%s File Created Successfully\n",filename);
+        printf("%s File Opened\n",filename);
+    }
+    fclose(fp);
+    printf("%s File Closed",filename);
+}
+```
 
 
 
@@ -94,11 +154,7 @@ Program:
 Output:
 
 
-//paste your output here
-
-
-
-
+![image](https://github.com/user-attachments/assets/f91eab94-8e78-4687-bb48-2dc7d3a34204)
 
 
 
@@ -132,8 +188,33 @@ Use scanf to input the file name into the name array and the number of strings i
 5.	Return 0 to indicate successful program execution.
  
 Program:
-
-//type your code here
+```
+#include <stdio.h>
+int main()
+{
+   char name[50],ch[100];
+   int i,num;
+   scanf("%s", name);
+   scanf("%d", &num);
+   FILE *fptr = fopen(name, "w");
+   
+  if(fptr == NULL)
+  {
+      printf("Error!");
+      return 1;
+  }else{
+   printf("%s Opened\n",name);
+  }
+   for(i = 0; i < num; i++)
+   {
+      fgets(ch,sizeof(ch),stdin);
+      fprintf(fptr,"%s\n",ch);
+   }
+   fclose(fptr);
+   printf("Data added Successfully");
+   return 0;
+}
+```
 
 
 
@@ -141,7 +222,8 @@ Program:
 Output:
 
 
-//paste your output here
+![image](https://github.com/user-attachments/assets/332cb406-6b64-4168-99f5-f220ea42cca3)
+
 
 
 
@@ -153,53 +235,66 @@ Thus, the program is verified successfully
 
 
 
-Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
+Ex No:5 TO CREATE A STRUCTURE FOR ELECTRICITY BILL CALCULATION USING TYPEDEF & FUNCTION-PASSING STRUCTURE TO A FUNCTION BY VALUE
 
 Aim:
-The aim of this program is to dynamically allocate memory to store information about multiple subjects (name and marks), input the details for each subject, and then display the stored information. Finally, it frees the allocated memory to prevent memory leaks.
+To create a structure for Electricity Bill calculation using typedef & function-Passing structure to a function by value (use service no, name, previous reading, current reading, unit consumption & amount as data members).
 
 Algorithm:
-1.Input the number of subjects.
+1. Define structure electricityBill with members:
+    - sNo (integer)
+    - sName (character array)
+    - prev (integer)
+    - curr (integer)
+    - units (integer)
+    - amt (float)
+2. Declare variable c of type electricityBill.
+3. Input service number, service name, current reading, and previous reading using scanf, store in c.sNo, c.sName, c.curr, c.prev.
+4. Calculate units consumed: c.units = c.curr - c.prev.
+5. If c.units <= 100
+    a. Calculate amount: c.amt = c.units * 3.
+6. Else if c.units > 100 and c.units <= 300
+    a. Calculate amount: c.amt = 300 + (c.units - 100) * 4.
+7. Else
+    a. Calculate amount: c.amt = 1100 + (c.units - 300) * 5.
+8. Print service number, service name, unit consumption, and amount (formatted to 2 decimal places).
+9. Return 0.
 
-2.Read the integer value n from the user, which represents the number of subjects.
-
-3.Dynamically allocate memory:
-
-4.Use malloc to allocate memory for n subjects. Each subject has a name (array of characters) and marks (integer).
-
-5.If memory allocation fails (i.e., the pointer s is NULL), display an error message and exit the program.
-
-6.Input the details of each subject
-
-7.Use a for loop to read the name and marks of each subject using scanf. For each subject, store the name as a string and marks as an integer in the dynamically allocated memory.
-
-8.Display the details of each subject
-
-9.Use another for loop to print the name and marks of each subject.
-
-10.Free the allocated memory
-
-11.After all operations are done, call free(s) to release the dynamically allocated memory.
-
-12.Return from the main function
-
-13.End the program by returning 0.
 
 Program:
 
-//type your code here
-
-
-
+```
+#include <stdio.h>
+typedef struct electricityBill{
+    int sNo;
+    char sName[20];
+    int prev, curr;
+    int units;
+    float amt;
+}eb;
+int main(){
+    eb c;
+    scanf("%d\n%s\n%d\n%d", &c.sNo, c.sName, &c.curr, &c.prev);
+    c.units = c.curr - c.prev;
+    if(c.units <= 100){
+        c.amt = c.units * 3;
+    }
+    else if(c.units > 100 && c.units <= 300){
+        c.amt = 300 + (c.units - 100) * 4;
+    }
+    else{
+        c.amt = 1100 + (c.units - 300) * 5;
+    }
+    printf("service number:%d\n", c.sNo);
+    printf("service name:%s\n", c.sName);
+    printf("unit consumption:%d\n", c.units);
+    printf("amount:%.2f", c.amt);
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
-
-
+![image](https://github.com/user-attachments/assets/8eefdd57-e0ba-4494-9758-c97de2f22018)
 
 
 Result:
